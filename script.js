@@ -1,11 +1,29 @@
-function draw() {
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+async function draw() {
+  // Wait for all images to be loaded.
+  await Promise.all(
+    Array.from(document.images).map(
+      (image) =>
+        new Promise((resolve) => image.addEventListener("load", resolve)),
+    ),
+  );
 
-    ctx.fillStyle = "rgb(200 0 0)";
-    ctx.fillRect(10, 10, 50, 50);
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
-    ctx.fillStyle = "rgb(0 0 200 / 50%)";
-    ctx.fillRect(30, 30, 50, 50);
+  // Draw slice
+  ctx.drawImage(
+    document.getElementById("source"),
+    33,
+    71,
+    104,
+    124,
+    21,
+    20,
+    87,
+    104,
+  );
+
+
 }
+
 draw();
