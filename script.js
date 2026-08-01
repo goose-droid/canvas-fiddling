@@ -1,3 +1,9 @@
+
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const sheet = document.getElementById("source");
+
 async function draw() {
   // Wait for all images to be loaded.
   await Promise.all(
@@ -7,13 +13,10 @@ async function draw() {
     ),
   );
 
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
-
-  const sheet = document.getElementById("source");
+  
 
   // Draw slice
-  function drawTile (type, canvasx, canavasy) {
+  function drawTile (type, canvasx, canvasy) {
    switch (type) {
     case "wall":
       ctx.drawImage(sheet, 0, 0, 30, 30, canvasx, canvasy, 30, 30);
@@ -40,23 +43,29 @@ async function draw() {
       ctx.drawImage(sheet, 90, 30, 30, 30, canvasx, canvasy, 30, 30);
       break;
     default:
-      console.log("something goofed");
+      ctx.drawImage(sheet, 0, 0, 30, 30, canvasx, canvasy, 30, 30);
       break;
    }
   }
 
-  drawTile("wall", 0, 0);
+ /* drawTile("wall", 0, 0);
   drawTile("floor", 30, 0);
   drawTile("moss-floor", 60, 0);
   drawTile("water", 90, 0);
   drawTile("warp", 120, 0);
   drawTile("person", 0, 30);
   drawTile("key", 30, 30);
-  drawTile("chest", 60, 30);
+  drawTile("chest", 60, 30);*/
 
   function drawBackground () {
-    for 
+    for (let i = 0; i < 5; i++) {
+      for (let k = 0; k < 5; k++) {
+        drawTile("wall", 30 * k, 30 * i )
+      }
+    }
   }
+
+  drawBackground();
 
 }
 
